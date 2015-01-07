@@ -31,7 +31,9 @@ int main(int argc, char ** argv) {
     d.clear();
     
     list<pair<string, void*> > p;
-    p.push_back(pair<string, void*> ("p", &ex1.getData().front().first));
+	cout << ex1.getData().front().first << endl;
+	cout << &ex1.getData().front().first << endl;
+    //p.push_back(pair<string, void*> ("p", ex1.getData().front().first));
     ex1.addPointers(p);
     p.clear();
     
