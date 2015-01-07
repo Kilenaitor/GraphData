@@ -10,15 +10,16 @@ shape = "ellipse"
 edge [
 ];
 "node0" [
-label="<type> A | { <0x7fff562d7c60> i |  <0x7fff562d7c78> 3} |{ <0x7fff562d7c60> j |  <0x7fff562d7c78> 4} |{ <0x7fff562d7c10> p |  <p> 0x7fff562d90b0} | node0"
+label="<type> A | { <0x7fff5f97da28> i |  <0x7fff5f97da40> 3} |{ <0x7fff5f97da28> j |  <0x7fff5f97da40> 4} |{ <0x7fff5f97d9d8> p |  <p> 0x7fcfa3d00050} | node0"
 shape = "record"
 ];
 "node1" [
-label="<type> A | { <0x7fff562d7c60> i |  <0x7fff562d7c78> 2} |{ <0x7fff562d7c60> j |  <0x7fff562d7c78> 4} |{ <0x7fff562d7c10> p |  <p> 0x0} | node1"
+label="<type> A | { <0x7fff5f97da28> i |  <0x7fff5f97da40> 2} |{ <0x7fff5f97da28> j |  <0x7fff5f97da40> 4} |{ <0x7fff5f97d9d8> p |  <p> 0x0} | node1"
 shape = "record"
 ];
 "node2" [
-label="<type> B | { <0x7fff562d7c60> a |  <0x7fff562d7c78> hello} |{ <0x7fff562d7c10> p1 |  <p1> 0x7fff562d8fb8} | { <0x7fff562d7c10> p2 |  <p2> 0x7fff562d9098} | node2"
+label="<type> B | { <0x7fff5f97da28> a |  <0x7fff5f97da40> hello} |{ <0x7fff5f97d9d8> p1 |  <p1> 0x0} | { <0x7fff5f97d9d8> p2 |  <p2> 0x0} | node2"
 shape = "record"
 ];
+"node0":"p"->"node0":"0x7fcfa3d00050"
 }

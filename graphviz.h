@@ -7,12 +7,14 @@
 #include <string>
 #include <list>
 #include <sstream>
+#include <map>
 #include <vector>
 #include "klist.h"
 
 void prepare(std::list<klist> &k) {
     
-    std::vector<std::pair<std::string,std::string> > connections;
+    std::map<std::string,std::string> map;
+	std::vector<std::pair<std::string, std::string> > connections;
     std::ofstream file ("raw.txt");
     if(file.is_open()) {
         
@@ -44,7 +46,8 @@ void prepare(std::list<klist> &k) {
                 if(p.second != nullptr) {
                     std::stringstream strm;
                     strm << p.second;
-                    connections.push_back(std::pair<std::string,std::string>("node" + std::to_string(x1) + ":" + strm.str(), "node" + std::to_string(x1)));
+					connections.push_back(std::pair<std::string, std::string> ("\"node" + std::to_string(x1) + "\":\"" + p.first + "\"", strm.str()));
+                    map.insert(std::pair<std::string,std::string>(strm.str(), "node" + std::to_string(x1)));
                 }
             }
             file << "node" << x1;
@@ -55,8 +58,9 @@ void prepare(std::list<klist> &k) {
             x1++;
         }
         
-        for(auto a : connections)
-            std::cout << a.first << " " << a.second << std::endl;
+		for(auto a : connections) {
+			file << a.first << "->\"" << map.at(a.second) << "\":\"" << a.second << "\"" << std::endl;
+		}
         
         file << "}" << std::endl;
     }

@@ -19,22 +19,19 @@ int main(int argc, char ** argv) {
     
     klist ex2 = klist("A");
     
-    string i = "i";
-    string two = "2";
-    d.push_back(pair<string, string> (i, two));
+    d.push_back(pair<string, string> ("i", "2"));
     d.push_back(pair<string, string> ("j", "4"));
     ex2.addData(d);
     d.clear();
 
     klist ex3 = klist("B");
     
-    string hello = "hello";
-    d.push_back(pair<string, string> ("a", hello));
+    d.push_back(pair<string, string> ("a", "hello"));
     ex3.addData(d);
     d.clear();
     
-    std::list< std::pair<std::string, void*> > p;
-    p.push_back(pair<string, void*> ("p", &i));
+    list<pair<string, void*> > p;
+    p.push_back(pair<string, void*> ("p", &ex1.getData().front().first));
     ex1.addPointers(p);
     p.clear();
     
@@ -42,8 +39,8 @@ int main(int argc, char ** argv) {
     ex2.addPointers(p);
     p.clear();
     
-    p.push_back(pair<string, void*> ("p1", &hello));
-    p.push_back(pair<string, void*> ("p2", &two));
+    p.push_back(pair<string, void*> ("p1", nullptr));
+    p.push_back(pair<string, void*> ("p2", nullptr));
     ex3.addPointers(p);
     p.clear();
     

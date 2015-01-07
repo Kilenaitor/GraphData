@@ -46,7 +46,7 @@ public:
         address = v;
     }
     
-    std::string getType() {
+    const std::string& getType() {
         return type;
     }
     
@@ -59,7 +59,7 @@ public:
             data.push_back(a);
     }
     
-    std::list<std::pair<std::string, std::string> > getData() {
+    const std::list<std::pair<std::string, std::string> >& getData() {
         return data;
     }
     
@@ -72,7 +72,7 @@ public:
             ptrs.push_back(a);
     }
     
-    std::list<std::pair<std::string, void*> > getPointers() {
+    const std::list<std::pair<std::string, void*> >& getPointers() {
         return ptrs;
     }
     
