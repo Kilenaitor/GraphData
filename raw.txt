@@ -1,0 +1,28 @@
+digraph g {
+graph [
+rankdir = "LR"
+concentrate=true
+];
+node [
+fontsize = "16"
+shape = "ellipse"
+];
+edge [
+];
+"node0" [
+label="<type> A | { <0x7fff5b438f40> i |  <0x7fff5b438f58> 3} |{ <0x7fff5b438f40> j |  <0x7fff5b438f58> 4} |{ <0x7fff5b438ef0> p |  <p> 0x7fff5b43a060} | node0"
+shape = "record"
+];
+"node0":p->"0x7fff5b43a060"
+"node1" [
+label="<type> A | { <0x7fff5b438f40> i |  <0x7fff5b438f58> 2} |{ <0x7fff5b438f40> j |  <0x7fff5b438f58> 4} |{ <0x7fff5b438ef0> p |  <p> 0x0} | node1"
+shape = "record"
+];
+"node1":p->"0x0"
+"node2" [
+label="<type> B | { <0x7fff5b438f40> a |  <0x7fff5b438f58> hello} |{ <0x7fff5b438ef0> p1 |  <p1> 0x7fff5b439f68} | { <0x7fff5b438ef0> p2 |  <p2> 0x7fff5b43a048} | node2"
+shape = "record"
+];
+"node2":p1->"0x7fff5b439f68"
+"node2":p2->"0x7fff5b43a048"
+}
