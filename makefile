@@ -1,7 +1,8 @@
-CXX = g++ -std=c++11
-CXXFLAGS = -lgvc -lcgraph -lcdt
+CXX = g++
+CPPFLAGS = -std=c++11 #-lgvc -lcgraph -lcdt
 
-main: drawer.o
+all:
+	g++ drawer.cpp
 	
 clean:
-	rm -f graphviz
+	rm -f drawer.o

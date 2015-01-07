@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char ** argv) {
     
     list<klist> k;
-    klist ex1 = klist("A");
+    klist ex1 = klist("A"); 
     
     list< pair<string, string> > d;
     d.push_back(pair<string, string> ("i", "3"));
