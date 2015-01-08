@@ -11,7 +11,7 @@
 #include <vector>
 #include "klist.h"
 
-void prepare(std::list<klist> &k) {
+void prepare(std::vector<klist> &k) {
     
     std::map<std::string,std::string> map;
 	std::vector<std::pair<std::string, std::string> > connections;

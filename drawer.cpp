@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <list>
+#include <vector>
 #include "klist.h"
 #include "graphviz.h"
 
@@ -9,7 +10,7 @@ using namespace std;
 
 int main(int argc, char ** argv) {
     
-    list<klist> k;
+    vector<klist> k;
     klist ex1 = klist("A"); 
     
     list< pair<string, string> > d;
@@ -32,9 +33,7 @@ int main(int argc, char ** argv) {
     d.clear();
     
     list<pair<string, void*> > p;
-    cout << (void*)ex2.getData().front().first.data() << endl;
-    p.emplace_back(pair<string, void*> ("p", (void*)ex2.getData().front().first.data()));
-    cout << p.front().second << endl;
+    p.emplace_back(pair<string, void*> ("p", nullptr));
     ex1.addPointers(p);
     p.clear();
     
@@ -47,14 +46,14 @@ int main(int argc, char ** argv) {
     ex3.addPointers(p);
     p.clear();
     
-    cout << (void*)ex2.getData().front().first.data() << endl;
-//    k.insert(k.begin(),ex1);
-    k.insert(k.begin(),ex2);
-    cout << (void*)k.front().getData().front().first.data() << endl;
+    k.push_back(move(ex1));
+    k.push_back(move(ex2));
     k.push_back(ex3);
-  
-    k.front().draw(cout);
-    cout << (void*)k.front().getData().front().first.data() << endl;
+    
+    cout << k.at(1).getPointers().front().second << endl;
+    cout << (void*)k.at(0).getData().front().first.data() << endl;
+    
+    k.at(1).getPointers().front().second = (void*)k.at(0).getData().front().first.data();
     
     prepare(k);
     drawGraph();
