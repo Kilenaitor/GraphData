@@ -21,12 +21,12 @@ void prepare(std::vector<klist> &k) {
         //Raw file for the graphviz layout
         file << "digraph g {" << std::endl;
         file << "graph [" << std::endl;
-        file << "rankdir = \"LR\"" << std::endl;
-        file << "concentrate=true;" << std::endl;
+        file << "rankdir = \"LR\"," << std::endl;
+		file << "nodesep=0.5" << std::endl;
+		file << "sep=5" << std::endl;
         file << "];" << std::endl;
         file << "node [" << std::endl;
-        file << "fontsize = \"16\"" << std::endl;
-        file << "shape = \"ellipse\"" << std::endl;
+        file << "fontsize = \"11\"" << std::endl;
         file << "];" << std::endl;
         file << "edge [" << std::endl;
         file << "];" << std::endl;
@@ -56,7 +56,7 @@ void prepare(std::vector<klist> &k) {
             }
             file << "node" << x1;
             file << "\"" << std::endl;
-            file << "shape = \"record\"" << std::endl;
+            file << "shape = \"Mrecord\"" << std::endl;
             file << "];" << std::endl;
 
             x1++;
