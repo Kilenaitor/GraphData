@@ -22,7 +22,7 @@ void prepare(std::vector<klist> &k) {
         file << "digraph g {" << std::endl;
         file << "graph [" << std::endl;
         file << "rankdir = \"LR\"" << std::endl;
-        file << "concentrate=true" << std::endl;
+        file << "concentrate=true;" << std::endl;
         file << "];" << std::endl;
         file << "node [" << std::endl;
         file << "fontsize = \"16\"" << std::endl;
@@ -39,6 +39,11 @@ void prepare(std::vector<klist> &k) {
             for(auto &d : a.getData()) {
                 file << "{ <"<< &d.first << "> " << d.first << " | ";
                 file << " <" << &d.second << "> " << d.second << "} |";
+                std::stringstream strm1, strm2;
+                strm1 << &d.first;
+                strm2 << &d.second;
+                map.insert(std::pair<std::string,std::string>(strm1.str(), "node" + std::to_string(x1)));
+                map.insert(std::pair<std::string,std::string>(strm2.str(), "node" + std::to_string(x1)));
             }
             for(auto &p : a.getPointers()) {
                 file << "{ <" << &p.first << "> " << p.first << " | ";
@@ -47,7 +52,6 @@ void prepare(std::vector<klist> &k) {
                     std::stringstream strm;
                     strm << p.second;
 					connections.push_back(std::pair<std::string, std::string> ("\"node" + std::to_string(x1) + "\":\"" + p.first + "\"", strm.str()));
-                    map.insert(std::pair<std::string,std::string>(strm.str(), "node" + std::to_string(x1)));
                 }
             }
             file << "node" << x1;

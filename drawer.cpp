@@ -50,10 +50,9 @@ int main(int argc, char ** argv) {
     k.push_back(move(ex2));
     k.push_back(ex3);
     
-    cout << k.at(1).getPointers().front().second << endl;
-    cout << (void*)k.at(0).getData().front().first.data() << endl;
-    
-    k.at(1).getPointers().front().second = (void*)k.at(0).getData().front().first.data();
+    k.at(1).getPointers().front().second = &k.at(0).getData().front().first;
+    k.at(2).getPointers().front().second = &k.at(2).getData().front().second;
+    k.at(2).getPointers().back().second = &k.at(0).getData().front().second;
     
     prepare(k);
     drawGraph();
