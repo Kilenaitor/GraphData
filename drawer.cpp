@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <list>
 #include "klist.h"
@@ -31,9 +32,9 @@ int main(int argc, char ** argv) {
     d.clear();
     
     list<pair<string, void*> > p;
-	cout << ex1.getData().front().first << endl;
-	cout << &ex1.getData().front().first << endl;
-    //p.push_back(pair<string, void*> ("p", ex1.getData().front().first));
+    cout << (void*)ex2.getData().front().first.data() << endl;
+    p.emplace_back(pair<string, void*> ("p", (void*)ex2.getData().front().first.data()));
+    cout << p.front().second << endl;
     ex1.addPointers(p);
     p.clear();
     
@@ -46,9 +47,14 @@ int main(int argc, char ** argv) {
     ex3.addPointers(p);
     p.clear();
     
-    k.push_back(ex1);
-    k.push_back(ex2);
+    cout << (void*)ex2.getData().front().first.data() << endl;
+//    k.insert(k.begin(),ex1);
+    k.insert(k.begin(),ex2);
+    cout << (void*)k.front().getData().front().first.data() << endl;
     k.push_back(ex3);
+  
+    k.front().draw(cout);
+    cout << (void*)k.front().getData().front().first.data() << endl;
     
     prepare(k);
     drawGraph();

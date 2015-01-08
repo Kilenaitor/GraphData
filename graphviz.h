@@ -32,15 +32,15 @@ void prepare(std::list<klist> &k) {
         file << "];" << std::endl;
         
         int x1 = 0; //Number of nodes
-        for(auto a : k) {
+        for(auto &a : k) {
             file << "\"node" << x1 << "\" [" << std::endl;
             file << "label=\"";
             file << "<type> " << a.getType() << " | ";
-            for(auto d : a.getData()) {
+            for(auto &d : a.getData()) {
                 file << "{ <"<< &d.first << "> " << d.first << " | ";
                 file << " <" << &d.second << "> " << d.second << "} |";
             }
-            for(auto p : a.getPointers()) {
+            for(auto &p : a.getPointers()) {
                 file << "{ <" << &p.first << "> " << p.first << " | ";
                 file << " <" << p.first << "> " << p.second << "} | ";
                 if(p.second != nullptr) {
@@ -58,7 +58,7 @@ void prepare(std::list<klist> &k) {
             x1++;
         }
         
-		for(auto a : connections) {
+		for(auto &a : connections) {
 			file << a.first << "->\"" << map.at(a.second) << "\":\"" << a.second << "\"" << std::endl;
 		}
         

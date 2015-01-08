@@ -24,14 +24,14 @@ public:
         type = t; 
     }
     
-    klist(std::string t, std::list<std::pair<std::string, std::string> > d, std::list<std::pair<std::string, void*> > p) {
+    klist(std::string &t, std::list<std::pair<std::string, std::string> > &d, std::list<std::pair<std::string, void*> > &p) {
         address = nullptr;
         type = t;
         data = d;
         ptrs = p;
     }
     
-    klist(void* add, std::string t, std::list<std::pair<std::string, std::string> > d, std::list<std::pair<std::string, void*> > p) {
+    klist(void* add, std::string &t, std::list<std::pair<std::string, std::string> > &d, std::list<std::pair<std::string, void*> > &p) {
         address = add;
         type = t;
         data = d;
@@ -50,12 +50,12 @@ public:
         return type;
     }
     
-    void setType(std::string name) {
+    void setType(std::string &name) {
         type = name;
     }
     
     void addData(std::list<std::pair<std::string, std::string> > &d) {
-        for(auto a : d)
+        for(auto &a : d)
             data.push_back(a);
     }
     
@@ -68,7 +68,7 @@ public:
     }
     
     void addPointers(std::list<std::pair<std::string, void*> > &p) {
-        for(auto a : p)
+        for(auto &a : p)
             ptrs.push_back(a);
     }
     
@@ -84,11 +84,11 @@ public:
         os << address << std::endl;
         os << type << std::endl;
         os << "---------" << std::endl;
-        for(auto a : data) {
+        for(auto &a : data) {
             os << "| " << a.first << " | " << a.second << " |" << std::endl;
             os << "---------" << std::endl;
         }
-        for(auto a : ptrs) {
+        for(auto &a : ptrs) {
             os << "| " << a.first << " | " << a.second << " |" << std::endl;
             os << "---------" << std::endl;
         }
