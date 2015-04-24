@@ -8,8 +8,7 @@
 
 using namespace std;
 
-int main(int argc, char ** argv) {
-    
+void print_klist() {
     vector<klist> k;
     klist ex1 = klist("A"); 
     
@@ -99,8 +98,25 @@ int main(int argc, char ** argv) {
 	k.at(5).getPointers().front().second = &k.at(5).getData().front().second;
 	k.at(5).getPointers().back().second = &k.at(0).getData().front().second;
     
-    prepare(k);
+    prepare_klist(k);
     drawGraph();
-    
+}
+
+void print_int_vector() {
+	vector<int> v = {1,2,3,4,5,6,7,8,9,10};
+	prepare_int_vector(v);
+	drawGraph();
+	v.push_back(5);
+	v.push_back(15);
+	prepare_int_vector(v);
+	drawGraph();
+	std::random_shuffle(v.begin(), v.end());
+	prepare_int_vector(v);
+	drawGraph();
+}
+
+int main(int argc, char ** argv) {
+	print_int_vector();
+	
     return 0;
 }
