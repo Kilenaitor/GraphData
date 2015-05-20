@@ -47,9 +47,11 @@ My QA department isn't exactly overstaffed.
 ##Current Examples
 ***
 This is what an array would look like:
+
 ![Array](http://puu.sh/hU0F3/25bdfc5b8b.png)
 
 ***
 
 This is what klist looks like:
+
 ![klist](http://puu.sh/hU0FT/33d7cbf5d1.png)
