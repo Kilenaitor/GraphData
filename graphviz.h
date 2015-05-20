@@ -19,10 +19,10 @@ void prepare(std::vector<klist> &k) {
     if(file.is_open()) {
         
         //Raw file for the graphviz layout
-        file << "digraph g {" << std::endl;
+        file << "digraph g {" << std::endl;        
         file << "graph [" << std::endl;
-        file << "rankdir = \"LR\"" << std::endl;
-        file << "concentrate=true;" << std::endl;
+        file << "rankdir = \"LR\"," << std::endl;
+        file << "overlap = scalexy," << std::endl;
         file << "];" << std::endl;
         file << "node [" << std::endl;
         file << "fontsize = \"16\"" << std::endl;
