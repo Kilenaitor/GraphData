@@ -20,7 +20,7 @@ A link for which can be found here:
 http://www.graphviz.org/Download.php
 
 ##Usage
-Pseudo-install will be written so until then,
+Pseudo-installer will be written so until then,
 
 `#include "graphviz.h"`
 
@@ -35,7 +35,7 @@ and hopefully maybe soon some custom data structures.
 
 After the implementation has been added, [template metaprogramming](http://i.imgur.com/zsFrWLe.gif) 
 will be used to remove the specific function calls and will be reduce to 
-a single function named `visualize`. It's basically magic, but not really
+a single function named `visualize(&<structure>)`. It's basically magic, but not really
 secret magic... since you can always just look at the code... Shhhhhh
 
 In the future, going to try to get it included as a pluging for gdb. 
