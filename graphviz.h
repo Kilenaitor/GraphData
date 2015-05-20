@@ -10,8 +10,51 @@
 #include <map>
 #include <vector>
 #include "klist.h"
+#include <time.h>
 
-void prepare(std::vector<klist> &k) {
+const std::string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    strftime(buf, sizeof(buf), "%H%M%S", &tstruct);
+
+    return buf;
+}
+
+void prepare_int_vector(std::vector<int> &v) {
+	std::ofstream file("raw.txt");
+	if(file.is_open()) {
+		
+		//Raw file for the graphviz layout
+        file << "digraph g {" << std::endl;
+        file << "graph [" << std::endl;
+        file << "rankdir = \"LR\"," << std::endl;
+		file << "nodesep=0.5" << std::endl;
+		file << "sep=5" << std::endl;
+        file << "];" << std::endl;
+        file << "node [" << std::endl;
+        file << "fontsize = \"11\"" << std::endl;
+        file << "];" << std::endl;
+        file << "edge [" << std::endl;
+        file << "];" << std::endl;
+		
+		int x1 = 0; //Number of nodes
+		file << "\"node" << x1 << "\" [" << std::endl;
+		file << "label=\"";
+		file << "<type> int" << " | ";
+		for(auto d : v) {
+			file << d << " | ";
+		}
+		file << "vector<int>";
+        file << "\"" << std::endl;
+        file << "shape = \"Mrecord\"" << std::endl;
+        file << "];" << std::endl;
+		file << "}" << std::endl;
+	}
+}
+
+void prepare_klist(std::vector<klist> &k) {
     
     std::map<std::string,std::string> map;
 	std::vector<std::pair<std::string, std::string> > connections;
@@ -22,11 +65,11 @@ void prepare(std::vector<klist> &k) {
         file << "digraph g {" << std::endl;        
         file << "graph [" << std::endl;
         file << "rankdir = \"LR\"," << std::endl;
-        file << "overlap = scalexy," << std::endl;
+		file << "nodesep=0.5" << std::endl;
+		file << "sep=5" << std::endl;
         file << "];" << std::endl;
         file << "node [" << std::endl;
-        file << "fontsize = \"16\"" << std::endl;
-        file << "shape = \"ellipse\"" << std::endl;
+        file << "fontsize = \"11\"" << std::endl;
         file << "];" << std::endl;
         file << "edge [" << std::endl;
         file << "];" << std::endl;
@@ -56,7 +99,7 @@ void prepare(std::vector<klist> &k) {
             }
             file << "node" << x1;
             file << "\"" << std::endl;
-            file << "shape = \"record\"" << std::endl;
+            file << "shape = \"Mrecord\"" << std::endl;
             file << "];" << std::endl;
 
             x1++;
@@ -68,7 +111,6 @@ void prepare(std::vector<klist> &k) {
         
         file << "}" << std::endl;
     }
-    std::cout << "Completed" << std::endl;
 }
 
 void drawGraph() {
@@ -81,7 +123,8 @@ void drawGraph() {
     fp = fopen("raw.txt", "r");
     g = agread(fp, 0);
     gvLayout(gvc, g, "dot");
-    gvRenderFilename (gvc, g, "png", "out.png");
+	std::string name = "out " + currentDateTime() + ".png";
+    gvRenderFilename (gvc, g, "png", name.c_str());
     gvFreeLayout(gvc, g);
     agclose(g);
     gvFreeContext(gvc);
