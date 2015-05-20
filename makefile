@@ -4,10 +4,13 @@ DFLAGS=-lgvc -lcgraph -lcdt
 
 all: main
 	
-main: drawer.o
+main: bin drawer
 
-drawer.o: drawer.cpp
-	$(CXX) $(CPPFLAGS) $(DFLAGS) drawer.cpp -o draw
+bin:
+	mkdir bin
+
+drawer: src/drawer.cpp
+	$(CXX) $(CPPFLAGS) $(DFLAGS) src/drawer.cpp -o bin/draw
 	
 clean:
-	rm -f drawer.o
+	rm -rf bin/
