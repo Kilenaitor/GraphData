@@ -24,6 +24,8 @@ Pseudo-installer will be written so until then,
 
 `#include "graphviz.h"`
 
+and then add `-lgvc -lcgraph -lcdt` to your compile statement.
+
 Yeah. It's... that easy... 
 
 ##Work in Progress
