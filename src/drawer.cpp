@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <list>
 #include <vector>
@@ -98,25 +97,62 @@ void print_klist() {
 	k.at(5).getPointers().front().second = &k.at(5).getData().front().second;
 	k.at(5).getPointers().back().second = &k.at(0).getData().front().second;
     
-    prepare_klist(k);
-    drawGraph();
+    visualize(k);
 }
 
 void print_int_vector() {
 	vector<int> v = {1,2,3,4,5,6,7,8,9,10};
-	prepare_int_vector(v);
-	drawGraph();
+	visualize(v);
 	v.push_back(5);
 	v.push_back(15);
-	prepare_int_vector(v);
-	drawGraph();
+	visualize(v);
 	std::random_shuffle(v.begin(), v.end());
-	prepare_int_vector(v);
-	drawGraph();
+	visualize(v);
+	std::sort(v.begin(), v.end());
+	visualize(v);
+}
+
+void print_string_vector() {
+	vector<string> v = {"kyle", "minshall", "is", "really", "cool"};
+	visualize(v);
+	v.push_back("!");
+	visualize(v); 
+}
+
+void print_double_vector() {
+	vector<double> d = {1.1, 2.1, 3.1, 4.1, 5.1};
+	visualize(d);
+	d.push_back(0.1);
+	visualize(d);
+	std::sort(d.begin(), d.end());
+	visualize(d);
+}
+
+void print_forward_list() {
+	forward_list<std::string> f {"kyle", "minshall", "is", "really", "cool"};
+	visualize(f);
+	f.push_front("RA");
+	visualize(f);
+	f.pop_front();
+	visualize(f);
+}
+
+void print_list() {
+	std::list<std::string> f {"kyle", "minshall", "is", "really", "cool"};
+	visualize(f);
+	f.push_front("RA");
+	visualize(f);
+	f.push_back("!");
+	visualize(f);
 }
 
 int main(int argc, char ** argv) {
 	print_int_vector();
+	print_string_vector();
+	print_double_vector();
+	print_klist();
+	print_forward_list();
+	print_list();
 	
     return 0;
 }
