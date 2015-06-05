@@ -15,6 +15,7 @@
 #include <type_traits>
 #include <cxxabi.h>
 #include <forward_list>
+#include <set>
 
 int counter = 0;
 
@@ -121,7 +122,7 @@ struct Data<std::vector<T> > {
 			file << "label=\"";
 			std::string realname = abi::__cxa_demangle(typeid(T).name(), 0, 0, &status);
 			if(realname == "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >")
-				realname = "std::string";
+				realname = "string";
 			file << "<type> "<< realname << " | ";
 			for(auto d : v) {
 				file << d << " | ";
@@ -150,7 +151,7 @@ struct Data<std::forward_list<T> > {
 				file << "label=\"";
 				std::string realname = abi::__cxa_demangle(typeid(T).name(), 0, 0, &status);
 				if(realname == "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >")
-					realname = "std::string";
+					realname = "string";
 				file << "<type> "<< realname << " | ";
 				file << d << " | ";
 				file << "forward_list<T>";
@@ -181,7 +182,7 @@ struct Data<std::list<T> > {
 				file << "label=\"";
 				std::string realname = abi::__cxa_demangle(typeid(T).name(), 0, 0, &status);
 				if(realname == "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >")
-					realname = "std::string";
+					realname = "string";
 				file << "<type> "<< realname << " | ";
 				file << d << " | ";
 				file << "list<T>";
@@ -192,6 +193,50 @@ struct Data<std::list<T> > {
 			for(int i = 0; i < x1-1; i++) {
 				file << "\"node" << i << "\"->" << "\"node" << i+1 << "\"" << std::endl;
 				file << "\"node" << i+1 << "\"->" << "\"node" << i << "\"" << std::endl;
+			}
+			file << "}" << std::endl;
+		}
+		drawGraph();
+	}
+};
+
+template<typename T>
+struct Data<std::set<T> > {
+	void operator()(std::set<T> &s) {
+		std::ofstream file("raw.txt");
+		if(file.is_open()) {
+			int status;
+			//Raw file for the graphviz layout
+			prepareGraph(file);
+			int x1 = 0; //Number of nodes
+			for(auto d : s) {
+				file << "\"node" << x1++ << "\" [" << std::endl;
+				file << "label=\"";
+				std::string realname = abi::__cxa_demangle(typeid(T).name(), 0, 0, &status);
+				if(realname == "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >")
+					realname = "string";
+				file << "<type> "<< realname << " | ";
+				file << d << " | ";
+				file << "set<T>";
+			    file << "\"" << std::endl;
+			    file << "shape = \"record\"" << std::endl;
+			    file << "];" << std::endl;
+			}
+			int set_size = s.size();
+			int midpoint = set_size/2;
+			auto mid_iterator = s.begin();
+			std::advance(mid_iterator, midpoint);
+			auto mid_rev_iterator = s.rbegin();
+			std::advance(mid_rev_iterator, midpoint+1);
+			file << "\"node" << midpoint << "\"->" << "\"node" << *mid_iterator << "\"" << std::endl;
+			file << "\"node" << midpoint << "\"->" << "\"node" << *mid_rev_iterator << "\"" << std::endl;
+			for(int left_side = *mid_rev_iterator; left_side > 1; left_side--) {
+				file << "\"node" << left_side << "\"->" << "\"node" << left_side-1 << "\"" << std::endl;
+				file << "\"node" << left_side << "\"->" << "\"node" << left_side-2 << "\"" << std::endl;
+			}
+			for(int right_side = *mid_iterator; right_side < set_size-2; right_side++) {
+				file << "\"node" << right_side << "\"->" << "\"node" << right_side+1 << "\"" << std::endl;
+				file << "\"node" << right_side << "\"->" << "\"node" << right_side+2 << "\"" << std::endl;
 			}
 			file << "}" << std::endl;
 		}

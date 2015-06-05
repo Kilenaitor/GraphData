@@ -146,6 +146,17 @@ void print_list() {
 	visualize(f);
 }
 
+void print_tree() {
+	std::set<int> s {1,2,3,4,5,6,7,8,9,10};
+	visualize(s);
+	s.insert(20);
+	s.insert(30);
+	visualize(s);
+	s.insert(40);
+	s.insert(50);
+	visualize(s);
+}
+
 int main(int argc, char ** argv) {
 	print_int_vector();
 	print_string_vector();
@@ -153,6 +164,7 @@ int main(int argc, char ** argv) {
 	print_klist();
 	print_forward_list();
 	print_list();
+	print_tree();
 	
     return 0;
 }
