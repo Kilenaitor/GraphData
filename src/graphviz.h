@@ -223,21 +223,6 @@ struct Data<std::set<T> > {
 			    file << "];" << std::endl;
 			}
 			int set_size = s.size();
-			int midpoint = set_size/2;
-			auto mid_iterator = s.begin();
-			std::advance(mid_iterator, midpoint);
-			auto mid_rev_iterator = s.rbegin();
-			std::advance(mid_rev_iterator, midpoint+1);
-			file << "\"node" << midpoint << "\"->" << "\"node" << *mid_iterator << "\"" << std::endl;
-			file << "\"node" << midpoint << "\"->" << "\"node" << *mid_rev_iterator << "\"" << std::endl;
-			for(int left_side = *mid_rev_iterator; left_side > 1; left_side--) {
-				file << "\"node" << left_side << "\"->" << "\"node" << left_side-1 << "\"" << std::endl;
-				file << "\"node" << left_side << "\"->" << "\"node" << left_side-2 << "\"" << std::endl;
-			}
-			for(int right_side = *mid_iterator; right_side < set_size-2; right_side++) {
-				file << "\"node" << right_side << "\"->" << "\"node" << right_side+1 << "\"" << std::endl;
-				file << "\"node" << right_side << "\"->" << "\"node" << right_side+2 << "\"" << std::endl;
-			}
 			file << "}" << std::endl;
 		}
 		drawGraph();

@@ -4,14 +4,14 @@ GraphData is a library used for visualizing data structures in image format.
 Normally when debugging or teaching data structures, the developer has to write
 a `print` function for the data structure so that they can visualize what the
 structure looks like at that current point. This is usually done in some crude,
-ASCII art-style, mess of `cout` statements just to get a structure that's semi-coherent.
+ASCII art-style, mess of `cout` statements just to get a visual that's only semi-coherent.
 
-With GraphData, all of the work is handled by another library called GraphViz that
-when supplied with a txt file containing data pertaining to a graph/chart/tree/etc.
+With GraphData, all of the work is handled by another library called GraphViz that,
+when supplied with a `.txt` file containing data pertaining to a graph/chart/tree/etc.
 will draw the diagram to spec and output an image file. Done in sequence, 
 an instructor or developer can simply call the library's `print` function as many
 times as desired and get a sequences of images (named by date and time created) that
-visualize the changes made to the data structure! Awesome :D
+visualize the changes made to the data structure! It's pretty cool :D
 
 ##Dependencies
 GraphData depends on the GraphViz library to be installed on the machine.
@@ -26,13 +26,13 @@ Pseudo-installer will be written so until then,
 
 and then add `-lgvc -lcgraph -lcdt` to your compile statement.
 
-Yeah. It's... that easy... 
+Yup, that easy.
 
 ##Work in Progress
 Currently, separate functions have to be called for each type of data structure
-that you want to have visualized. Currently supported are array, vector, 
+that you want to have visualized. Currently supported are array, vector, singly-linked lists, doubly-linked lists,
 and klist (which is a custom data structure used for testing). Support will be
-added soon for `stacks`, `queues`, `trees`, `dequeus`, `lists`, `maps`, `sets`, 
+added soon for `stacks`, `queues`, `trees`, `dequeus`, `maps`, `sets`, 
 and hopefully maybe soon some custom data structures. 
 
 After the implementation has been added, [template metaprogramming](http://i.imgur.com/zsFrWLe.gif) 
@@ -43,7 +43,7 @@ secret magic... since you can always just look at the code... Shhhhhh
 In the future, going to try to get it included as a pluging for gdb. 
 BUT, until then, this is the best I can do. I hope you enjoy!
 
-Feel free to open an issue if something isn't working or you just want something addd. 
+Feel free to open an issue if something isn't working or you just want something add. 
 My QA department isn't exactly overstaffed. 
 
 ##Current Examples

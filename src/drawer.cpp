@@ -157,7 +157,8 @@ void print_tree() {
 	visualize(s);
 }
 
-int main(int argc, char ** argv) {
+int main(int argc, char ** argv) 
+{
 	print_int_vector();
 	print_string_vector();
 	print_double_vector();
